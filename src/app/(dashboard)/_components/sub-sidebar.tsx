@@ -12,7 +12,7 @@ export default function SubSidebar() {
   const favourites = searchParams.get("favourites");
 
   return (
-    <div className="flex h-screen flex-col gap-2 bg-muted/50 p-4">
+    <div className="border-r-global_sm flex h-screen flex-col gap-2 bg-muted/50 p-4">
       <Link href="/" className="font-black">
         HIVE
       </Link>

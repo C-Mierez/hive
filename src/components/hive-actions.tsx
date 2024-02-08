@@ -72,7 +72,7 @@ export default function HiveActions({
       >
         <DropdownMenuItem onClick={onCopyLink}>
           <Link2Icon className="mr-[1ch] h-5 w-5" />
-          Copy link to Hive
+          Share
         </DropdownMenuItem>
         <DropdownMenuItem onClick={onRenameHive}>
           <Pencil2Icon className="mr-[1ch] h-5 w-5" />
