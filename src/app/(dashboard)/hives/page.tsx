@@ -17,7 +17,7 @@ export default function FilesPage({ searchParams }: FilesPageParams) {
   return (
     <main className="flex-1">
       {organization ? (
-        <HiveList orgId={organization.id} query={searchParams} />
+        <HiveList colonyId={organization.id} query={searchParams} />
       ) : (
         <EmptyColony />
       )}

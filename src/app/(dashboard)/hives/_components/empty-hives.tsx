@@ -16,24 +16,17 @@ export default function EmptyHives() {
       return;
     }
 
-    mutate({
-      orgId: organization.id,
-      title: "Untitled",
-    }).then((id) => {
-      toast.success("Hive created successfully");
-    });
-
-    // toast.promise(
-    //   mutate({
-    //     orgId: organization.id,
-    //     title: "Untitled",
-    //   }),
-    //   {
-    //     loading: "Creating Hive...",
-    //     success: "Hive created successfully",
-    //     error: "Failed to create Hive",
-    //   }
-    // );
+    toast.promise(
+      mutate({
+        colonyId: organization.id,
+        title: "Untitled",
+      }),
+      {
+        loading: "Creating Hive...",
+        success: "Hive created successfully",
+        error: "Failed to create Hive",
+      },
+    );
   };
 
   return (

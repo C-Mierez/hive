@@ -20,7 +20,7 @@ export default function SearchInput() {
   useEffect(() => {
     const url = qs.stringifyUrl(
       {
-        url: "/files",
+        url: "/hives",
         query: {
           search: debouncedValue,
         },

@@ -12,7 +12,7 @@ export default function SubSidebar() {
   const favourites = searchParams.get("favourites");
 
   return (
-    <div className="bg-muted/50 flex h-screen flex-col gap-2 p-4">
+    <div className="flex h-screen flex-col gap-2 bg-muted/50 p-4">
       <h1 className="font-black">HIVE</h1>
       <OrganizationSwitcher
         hidePersonal
@@ -43,7 +43,7 @@ export default function SubSidebar() {
           variant={!favourites ? "default" : "outline"}
           className="flex  w-full justify-start gap-[1ch] px-4"
         >
-          <Link href={"/files"}>
+          <Link href={"/hives"}>
             <DashboardIcon className="h-4 w-4" />
             Team Boards
           </Link>
@@ -56,7 +56,7 @@ export default function SubSidebar() {
         >
           <Link
             href={{
-              pathname: "/files",
+              pathname: "/hives",
               query: { favourites: true },
             }}
           >

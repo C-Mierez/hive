@@ -30,7 +30,7 @@ export default function Header() {
           </li>
           <li>
             <a
-              href="/files"
+              href="/hives"
               className="grid h-full place-items-center border-l-global bg-foreground px-global text-background  hover:bg-primary hover:text-foreground"
             >
               Get Started
