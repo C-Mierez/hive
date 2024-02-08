@@ -20,6 +20,7 @@ const config = {
     extend: {
       boxShadow: {
         brutal: "4px 4px 0 1px hsl(var(--border))",
+        brutal_sm: "2px 2px 0 1px hsl(var(--border))",
       },
       fontFamily: {
         sans: ["var(--font-mabry)"],
