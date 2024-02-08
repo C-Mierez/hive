@@ -1,3 +1,4 @@
+import { SignUpButton } from "@clerk/nextjs";
 import css from "./landing.module.css";
 
 export default function Header() {
@@ -10,25 +11,27 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-background">
-      <nav className="border-y-global flex items-stretch justify-between text-lg">
-        <ul className="pl-global flex gap-12 py-4">
+      <nav className="flex items-stretch justify-between border-y-global text-lg">
+        <ul className="flex gap-12 py-4 pl-global">
           {items.map((item) => (
             <NavItem key={item.label} label={item.label} />
           ))}
         </ul>
         <ul className="flex items-stretch ">
           <li>
-            <a
-              href="/"
-              className="px-global border-l-global grid h-full place-items-center"
-            >
-              Login
-            </a>
+            <SignUpButton>
+              <button
+                type="button"
+                className="grid h-full place-items-center border-l-global px-global hover:bg-primary"
+              >
+                Login
+              </button>
+            </SignUpButton>
           </li>
           <li>
             <a
-              href="/"
-              className="px-global grid h-full place-items-center bg-foreground text-background "
+              href="/files"
+              className="grid h-full place-items-center border-l-global bg-foreground px-global text-background  hover:bg-primary hover:text-foreground"
             >
               Get Started
             </a>
