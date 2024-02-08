@@ -34,7 +34,7 @@ export default function NewHiveCard({ colonyId, disabled }: NewHiveCardParams) {
       onClick={onClick}
       className="border-global_sm group relative flex aspect-video flex-col items-center justify-end gap-4 overflow-clip rounded-sm hover:shadow-brutal_sm"
     >
-      <div className="absolute left-0 top-0 -z-10 grid h-full w-full flex-1 place-items-center bg-foreground p-4 transition group-hover:scale-[1.1]">
+      <div className="absolute left-0 top-0 -z-10 grid h-full w-full flex-1 place-items-center bg-muted-foreground p-4 transition group-hover:scale-[1.1]">
         <PlusIcon className="h-16 w-16 text-background" />
       </div>
       <div className="z-1 border-t-global_sm w-full translate-y-full bg-background p-4 transition group-hover:translate-y-0">
