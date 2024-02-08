@@ -22,8 +22,8 @@ export default function NewHiveCard({ colonyId, disabled }: NewHiveCardParams) {
       }),
       {
         loading: "Creating Hive...",
-        success: "Hive created successfully",
-        error: "Failed to create Hive",
+        success: "Hive created successfully.",
+        error: "Failed to create Hive.",
       },
     );
   };
