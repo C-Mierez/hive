@@ -4,7 +4,13 @@ import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
+import {
+  DotsVerticalIcon,
+  StarFilledIcon,
+  StarIcon,
+} from "@radix-ui/react-icons";
+import HiveActions from "~/components/hive-actions";
+import { Button } from "~/components/ui/button";
 
 interface HiveCardParams {
   id: string;
@@ -56,11 +62,20 @@ export default function HiveCard({
           className="rounded-sm object-cover transition group-hover:scale-[1.1]"
         />
       </div>
-      <div className="z-1 border-t-global_sm w-full bg-background p-4">
-        <h1 className="text-lg font-bold">{title}</h1>
-        <p className="text-sm text-muted-foreground">
-          {authorLabel}, {createdAtLabel}
-        </p>
+      <div className="z-1 border-t-global_sm w-full bg-background">
+        <div className="flex items-center p-4">
+          <div className="flex flex-1 flex-col justify-center">
+            <h1 className="text-lg font-bold">{title}</h1>
+            <p className="text-sm text-muted-foreground">
+              {authorLabel}, {createdAtLabel}
+            </p>
+          </div>
+          <HiveActions id={colonyId} title={title} side="right">
+            <button className="px-4 text-muted-foreground hover:text-foreground">
+              <DotsVerticalIcon className="h-5 w-5 translate-x-4" />
+            </button>
+          </HiveActions>
+        </div>
       </div>
     </Link>
   );
