@@ -70,7 +70,7 @@ export default function HiveCard({
               {authorLabel}, {createdAtLabel}
             </p>
           </div>
-          <HiveActions id={colonyId} title={title} side="right">
+          <HiveActions id={id} title={title} side="right">
             <button className="px-4 text-muted-foreground hover:text-foreground">
               <DotsVerticalIcon className="h-5 w-5 translate-x-4" />
             </button>
