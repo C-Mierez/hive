@@ -68,3 +68,14 @@
 li {
   list-style: none;
 }
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: hsl(var(--primary));
+  background: hsl(var(--muted));
+}
+
+::selection {
+  color: hsl(var(--primary));
+  background: hsl(var(--muted));
+}
