@@ -1,0 +1,73 @@
+/* ------------------------------ SquareLoader ------------------------------ */
+/* HTML: <div class="loader"></div> */
+.squareWrapper {
+  --size: 2.25rem;
+  --spreadSize: calc(var(--size) * 1.5);
+  --smallSize: calc(var(--size) * 0.5);
+  --color: hsl(var(--foreground));
+
+  &.sm {
+    --size: 1rem;
+  }
+
+  &.md {
+    --size: 1.5rem;
+  }
+
+  &.lg {
+    --size: 2.25rem;
+  }
+
+  display: grid;
+  place-items: center;
+
+  min-height: var(--spreadSize);
+  min-width: var(--spreadSize);
+
+  .squareLoader {
+    width: var(--size);
+    height: var(--size);
+
+    --c: no-repeat linear-gradient(var(--color) 0 0);
+
+    background: var(--c), var(--c), var(--c), var(--c);
+    background-size: var(--smallSize) var(--smallSize);
+    animation: l5 calc(var(--animation-duration) * 2) infinite
+      var(--animation-function-bezier);
+  }
+}
+
+@keyframes l5 {
+  0% {
+    background-position:
+      0 0,
+      100% 0,
+      100% 100%,
+      0 100%;
+  }
+  33% {
+    background-position:
+      0 0,
+      100% 0,
+      100% 100%,
+      0 100%;
+    width: var(--spreadSize);
+    height: var(--spreadSize);
+  }
+  66% {
+    background-position:
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 0;
+    width: var(--spreadSize);
+    height: var(--spreadSize);
+  }
+  100% {
+    background-position:
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 0;
+  }
+}
