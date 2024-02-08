@@ -1,16 +1,25 @@
-import { UserButton } from "@clerk/nextjs";
+import BrandHeader from "./(landing)/_components/brand-header";
+import EndSection from "./(landing)/_components/end-section";
+import FeaturesSection from "./(landing)/_components/features-section";
+import FooterSection from "./(landing)/_components/footer-section";
+import Header from "./(landing)/_components/header";
+import HeroMarquee from "./(landing)/_components/hero-marquee";
+import HeroSection from "./(landing)/_components/hero-section";
+import StatsSection from "./(landing)/_components/stats-section";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <main>
-      <h1 className="text-4xl font-bold">
-        The quick brown fox jumps over the lazy dog.
-      </h1>
-      <h1 className="text-4xl font-bold">0123456789.</h1>
-      <h1 className="text-4xl font-bold">Q.</h1>
-      <div>
-        <UserButton />
-      </div>
-    </main>
+    <>
+      <BrandHeader />
+      <Header />
+      <main className="min-h-[200vh]">
+        <HeroSection />
+        <HeroMarquee />
+        <FeaturesSection />
+        <StatsSection />
+        <EndSection />
+        <FooterSection />
+      </main>
+    </>
   );
 }

@@ -1,0 +1,37 @@
+.navItem::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: hsl(var(--foreground));
+  transition: width var(--animation-duration-short)
+    var(--animation-function-bezier);
+}
+
+.navItem:hover::after {
+  width: 100%;
+}
+
+.navItem {
+  position: relative;
+  cursor: pointer;
+}
+
+.marquee {
+  animation: marquee 14s infinite linear;
+}
+
+.marqueeCopy {
+  animation: marquee 14s infinite linear;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

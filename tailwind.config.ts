@@ -14,12 +14,29 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1100px",
       },
     },
     extend: {
+      boxShadow: {
+        brutal: "4px 4px 0 1px hsl(var(--border))",
+      },
       fontFamily: {
         sans: ["var(--font-mabry)"],
+      },
+      padding: {
+        global: "var(--padding-global)",
+        global2: "calc(var(--padding-global)*2)",
+        vertical: "var(--padding-vertical)",
+        vertical50: "calc(var(--padding-vertical)*0.5)",
+      },
+      margin: {
+        global: "var(--padding-global)",
+        vertical: "var(--padding-vertical)",
+        vertical50: "calc(var(--padding-vertical)*0.5)",
+      },
+      borderWidth: {
+        global: "var(--border-width-global)",
       },
       colors: {
         border: "hsl(var(--border))",
