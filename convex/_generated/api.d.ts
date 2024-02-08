@@ -15,6 +15,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as hive from "../hive.js";
+import type * as hives from "../hives.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -26,6 +27,7 @@ import type * as hive from "../hive.js";
  */
 declare const fullApi: ApiFromModules<{
   hive: typeof hive;
+  hives: typeof hives;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
