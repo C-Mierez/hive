@@ -11,7 +11,7 @@ export default function DashboardLayout({
     <div className="flex min-h-screen">
       <Sidebar />
       <SubSidebar />
-      <div className="h-screen flex-1">
+      <div className="flex h-screen flex-1 flex-col">
         <Navbar />
         {children}
       </div>

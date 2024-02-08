@@ -4,7 +4,7 @@ import OrganizationList from "./org-list";
 
 export default function Sidebar() {
   return (
-    <aside className="bg-muted flex h-screen flex-col gap-4 p-4">
+    <aside className="flex h-screen flex-col gap-4 bg-muted p-4">
       <OrganizationList />
       <AddButton />
     </aside>
