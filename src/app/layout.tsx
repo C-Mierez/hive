@@ -6,6 +6,7 @@ import ConvexClientProvider from "~/providers/convex-client-provider";
 import { MabryPro } from "~/styles/fonts/local-fonts";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Toaster } from "~/components/ui/sonner";
+import ModalProvider from "~/providers/modal-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,8 +35,9 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider>
           <ConvexClientProvider>
-            {children}
             <Toaster />
+            <ModalProvider />
+            {children}
           </ConvexClientProvider>
         </TRPCReactProvider>
       </body>
