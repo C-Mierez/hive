@@ -5,6 +5,7 @@ import { cn } from "~/lib/utils";
 import ConvexClientProvider from "~/providers/convex-client-provider";
 import { MabryPro } from "~/styles/fonts/local-fonts";
 import { TRPCReactProvider } from "~/trpc/react";
+import { Toaster } from "~/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,7 +33,10 @@ export default function RootLayout({
     >
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider>
-          <ConvexClientProvider>{children}</ConvexClientProvider>
+          <ConvexClientProvider>
+            {children}
+            <Toaster />
+          </ConvexClientProvider>
         </TRPCReactProvider>
       </body>
     </html>
