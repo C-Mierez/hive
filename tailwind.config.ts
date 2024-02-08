@@ -38,6 +38,7 @@ const config = {
       },
       borderWidth: {
         global: "var(--border-width-global)",
+        global_sm: "var(--border-width-sm)",
       },
       colors: {
         border: "hsl(var(--border))",
