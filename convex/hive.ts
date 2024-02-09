@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
 export const create = mutation({
   args: {
@@ -158,5 +158,14 @@ export const unfavourite = mutation({
     await ctx.db.delete(existingFavourite._id);
 
     return hive;
+  },
+});
+
+export const get = query({
+  args: {
+    id: v.id("hive"),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id);
   },
 });

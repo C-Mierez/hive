@@ -1,4 +1,6 @@
+import Room from "~/components/room";
 import Canvas from "./_components/canvas";
+import CanvasLoading from "./_components/canvas-loading";
 
 interface HiveIdPageParams {
   params: {
@@ -8,8 +10,8 @@ interface HiveIdPageParams {
 
 export default function HiveIdPage({ params }: HiveIdPageParams) {
   return (
-    <div>
+    <Room roomId={params.hiveId} fallback={<CanvasLoading />}>
       <Canvas hiveId={params.hiveId} />
-    </div>
+    </Room>
   );
 }
