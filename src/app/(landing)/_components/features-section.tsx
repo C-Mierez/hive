@@ -4,7 +4,7 @@ import { cn } from "~/lib/utils";
 
 export default function FeaturesSection() {
   return (
-    <section>
+    <section className="relative z-[1] bg-background">
       <div className="container grid gap-8 py-vertical">
         <h1 className="text-center text-7xl">Dive into our features</h1>
         <h2 className="text-center text-4xl leading-tight">

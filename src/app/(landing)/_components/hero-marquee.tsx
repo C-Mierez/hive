@@ -3,7 +3,7 @@ import css from "./landing.module.css";
 
 export default function HeroMarquee() {
   return (
-    <section className="flex flex-nowrap overflow-clip whitespace-nowrap bg-foreground">
+    <section className="relative z-[1] flex flex-nowrap overflow-clip whitespace-nowrap bg-foreground">
       <div
         className={cn(
           "flex min-w-max flex-nowrap text-nowrap  py-16",

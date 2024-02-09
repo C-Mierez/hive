@@ -2,7 +2,7 @@ import Arrow1 from "~/components/svg/arrow-1";
 
 export default function HeroSection() {
   return (
-    <section className="relative grid grid-cols-2 border-b-global">
+    <section className="relative z-[1] grid grid-cols-2 border-b-global">
       <div className="flex flex-col justify-between gap-16 border-r-global bg-primary px-global py-vertical">
         <div>
           <h1 className="text-8xl">Buzzing ideas.</h1>

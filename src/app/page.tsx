@@ -12,7 +12,7 @@ export default function LandingPage() {
     <>
       <BrandHeader />
       <Header />
-      <main className="min-h-[200vh]">
+      <main className="relative min-h-[200vh]">
         <HeroSection />
         <HeroMarquee />
         <FeaturesSection />

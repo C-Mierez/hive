@@ -1,6 +1,6 @@
 export default function StatsSection() {
   return (
-    <section>
+    <section className="relative z-[1] bg-background">
       <div className="container grid gap-8 py-vertical">
         <h1 className="text-center text-7xl">Notice all the buzz?</h1>
         <h2 className="text-center text-4xl leading-tight">
@@ -26,7 +26,7 @@ interface StatsParams {
 
 function Stats(params: StatsParams) {
   return (
-    <div className=" sticky top-[3.75rem] w-full border-t-global bg-background py-vertical50">
+    <div className=" sticky top-[3.75rem] w-full border-t-global bg-background py-vertical50 odd:bg-muted">
       <div className="container grid place-items-center gap-6">
         <h3 className="text-9xl">{params.value}</h3>
         <p className="text-3xl">{params.label}</p>

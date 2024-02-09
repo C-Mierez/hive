@@ -1,6 +1,6 @@
 export default function EndSection() {
   return (
-    <section className="border-y-global bg-primary py-vertical">
+    <section className="relative z-[2] border-y-global bg-primary py-vertical">
       <div className="container grid place-items-center">
         <h1 className="text-[10rem] font-black leading-none">HIVE</h1>
         <h2 className="mb-vertical50 text-6xl">Where ideas swarm to life</h2>
