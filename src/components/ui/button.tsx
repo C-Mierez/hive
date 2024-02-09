@@ -11,6 +11,9 @@ const buttonVariants = cva(
       variant: {
         default:
           "border-global_sm bg-primary text-primary-foreground hover:bg-primary",
+        dark: "border-global_sm  bg-foreground text-background hover:bg-foreground hover:border-background",
+        darkColored:
+          "border-global_sm  bg-foreground text-background hover:bg-accent",
         accent:
           "border-global_sm bg-accent text-accent-foreground hover:bg-accent",
         destructive:
