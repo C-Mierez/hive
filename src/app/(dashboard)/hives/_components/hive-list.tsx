@@ -44,7 +44,7 @@ export default function HiveList({ colonyId, query }: HiveListParams) {
   }
 
   return (
-    <div className="h-full px-4 py-2">
+    <div className="h-full  px-4 py-2">
       <h1 className="py-6 text-3xl">
         {query.favourites ? "Favourite Hives" : "Your Hives"}
       </h1>

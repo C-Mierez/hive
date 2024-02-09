@@ -41,12 +41,12 @@ export default function NewHiveCard({ colonyId, disabled }: NewHiveCardParams) {
     <button
       disabled={pending || disabled}
       onClick={onClick}
-      className="brutalHover group relative flex aspect-video flex-col items-center justify-end gap-4 overflow-clip rounded-sm border-global_sm"
+      className="brutalHover  group relative flex aspect-video flex-col items-center justify-end gap-4 overflow-clip rounded-sm border-global_sm"
     >
-      <div className="absolute left-0 top-0 -z-10 grid h-full w-full flex-1 place-items-center bg-muted-foreground p-4 transition group-hover:scale-[1.1]">
+      <div className="absolute left-0 top-0 z-0 grid h-full w-full flex-1 place-items-center bg-foreground p-4 transition group-hover:scale-[1.1] group-hover:bg-primary">
         <PlusIcon className="h-16 w-16 text-background" />
       </div>
-      <div className="z-1 w-full translate-y-full border-t-global_sm bg-background p-4 transition group-hover:translate-y-0">
+      <div className="z-[1] w-full translate-y-full border-t-global_sm bg-background p-4 transition group-hover:translate-y-0">
         <h1 className="text-lg font-bold">Create a new Hive</h1>
         <p className="text-sm text-muted-foreground">
           Start a brand new Hive for this colony

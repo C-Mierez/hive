@@ -16,6 +16,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import HiveActions from "~/components/hive-actions";
 import handleConvexPending from "~/lib/handle-convex-pending";
+import { cn } from "~/lib/utils";
 
 interface HiveCardParams {
   id: string;
@@ -83,7 +84,10 @@ export default function HiveCard({
       <button
         onClick={toggleFavourite}
         disabled={pendingFavourite || pendingUnfavourite}
-        className="group/favourite absolute left-0 top-0 -translate-x-full rounded-br-sm border-b-global_sm border-r-global_sm bg-foreground p-3 transition  group-hover:translate-x-0"
+        className={cn(
+          "group/favourite absolute left-0 top-0 z-[1] rounded-br-sm border-b-global_sm border-r-global_sm bg-foreground p-3 transition",
+          !isFavourite && "-translate-x-full group-hover:translate-x-0",
+        )}
       >
         {!isFavourite && (
           <StarIcon className="h-6 w-6 text-background group-hover/favourite:text-primary" />
@@ -93,7 +97,7 @@ export default function HiveCard({
         )}
       </button>
       <Link href={`/hive/${id}`}>
-        <div className="absolute left-0 top-0 -z-10 h-full w-full">
+        <div className="absolute left-0 top-0 z-0 h-full w-full">
           <Image
             src={imageUrl}
             alt={title}
@@ -102,7 +106,7 @@ export default function HiveCard({
           />
         </div>
       </Link>
-      <div className="z-1 w-full cursor-default border-t-global_sm bg-background">
+      <div className="z-[1] w-full cursor-default border-t-global_sm bg-background">
         <div className="flex items-center p-4">
           <div className="flex flex-1 flex-col justify-center">
             <h1 className="w-fit text-lg font-bold">{title}</h1>

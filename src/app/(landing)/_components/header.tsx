@@ -1,7 +1,12 @@
-import { SignUpButton } from "@clerk/nextjs";
+"use client";
+
+import { SignUpButton, useAuth } from "@clerk/nextjs";
 import css from "./landing.module.css";
+import { useConvexAuth } from "convex/react";
 
 export default function Header() {
+  const { isAuthenticated } = useConvexAuth();
+
   const items = [
     { label: "Features" },
     { label: "Pricing" },
@@ -18,22 +23,24 @@ export default function Header() {
           ))}
         </ul>
         <ul className="flex items-stretch ">
-          <li>
-            <SignUpButton>
-              <button
-                type="button"
-                className="grid h-full place-items-center border-l-global px-global hover:bg-primary"
-              >
-                Login
-              </button>
-            </SignUpButton>
-          </li>
+          {isAuthenticated ? null : (
+            <li>
+              <SignUpButton>
+                <button
+                  type="button"
+                  className="grid h-full place-items-center border-l-global px-global hover:bg-primary"
+                >
+                  Login
+                </button>
+              </SignUpButton>
+            </li>
+          )}
           <li>
             <a
               href="/hives"
               className="grid h-full place-items-center border-l-global bg-foreground px-global text-background  hover:bg-primary hover:text-foreground"
             >
-              Get Started
+              {isAuthenticated ? "Dashboard" : "Get Started"}
             </a>
           </li>
         </ul>

@@ -8,10 +8,10 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen">
+    <div className="relative flex">
       <Sidebar />
       <SubSidebar />
-      <div className="flex h-screen flex-1 flex-col">
+      <div className="flex flex-1 flex-col bg-muted">
         <Navbar />
         {children}
       </div>
