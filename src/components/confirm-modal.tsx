@@ -11,6 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
+import { Button } from "./ui/button";
 
 interface ConfirmModalParams {
   children: React.ReactNode;
@@ -38,9 +39,13 @@ export default function ConfirmModal({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={onCancel}>Cancel</AlertDialogCancel>
-          <AlertDialogAction disabled={disabled} onClick={onConfirm}>
-            Confirm
+          <AlertDialogCancel asChild onClick={onCancel}>
+            <Button variant="outline">Cancel</Button>
+          </AlertDialogCancel>
+          <AlertDialogAction asChild disabled={disabled} onClick={onConfirm}>
+            <Button variant="default" disabled={disabled}>
+              Confirm
+            </Button>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
