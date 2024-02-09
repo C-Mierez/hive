@@ -2,6 +2,7 @@
 
 import { useOrganization } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { api } from "~/../convex/_generated/api";
@@ -9,6 +10,7 @@ import { Button } from "~/components/ui/button";
 import handleConvexPending from "~/lib/handle-convex-pending";
 
 export default function EmptyHives() {
+  const router = useRouter();
   const [pending, setPending] = useState(false);
   const mutate = useMutation(api.hive.create);
 
@@ -24,6 +26,8 @@ export default function EmptyHives() {
         mutate({
           colonyId: organization.id,
           title: "Untitled",
+        }).then((hive) => {
+          router.push(`/hive/${hive}`);
         }),
         setPending,
       ),
