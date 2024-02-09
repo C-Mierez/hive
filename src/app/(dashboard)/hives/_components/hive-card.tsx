@@ -6,10 +6,16 @@ import {
   StarFilledIcon,
   StarIcon,
 } from "@radix-ui/react-icons";
+import { api } from "~/../convex/_generated/api";
+import { Id } from "convex/_generated/dataModel";
+import { useMutation } from "convex/react";
 import { formatDistanceToNow } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { toast } from "sonner";
 import HiveActions from "~/components/hive-actions";
+import handleConvexPending from "~/lib/handle-convex-pending";
 
 interface HiveCardParams {
   id: string;
@@ -33,6 +39,38 @@ export default function HiveCard({
   isFavourite,
 }: HiveCardParams) {
   const { userId } = useAuth();
+  const [pendingFavourite, setPendingFavourite] = useState(false);
+  const [pendingUnfavourite, setPendingUnfavourite] = useState(false);
+  const mFavourite = useMutation(api.hive.favourite);
+  const mUnfavourite = useMutation(api.hive.unfavourite);
+
+  const toggleFavourite = async () => {
+    if (isFavourite) {
+      toast.promise(
+        handleConvexPending(
+          mUnfavourite({ hiveId: id as Id<"hive"> }),
+          setPendingUnfavourite,
+        ),
+        {
+          loading: "Removing from favourites...",
+          success: "Removed from favourites.",
+          error: "Failed to remove from favourites.",
+        },
+      );
+    } else {
+      toast.promise(
+        handleConvexPending(
+          mFavourite({ hiveId: id as Id<"hive">, colonyId }),
+          setPendingFavourite,
+        ),
+        {
+          loading: "Adding to favourites...",
+          success: "Added to favourites!",
+          error: "Failed to add to favourites.",
+        },
+      );
+    }
+  };
 
   const authorLabel = userId === authorId ? "You" : authorName;
 
@@ -42,7 +80,11 @@ export default function HiveCard({
 
   return (
     <div className="brutalHover group relative flex aspect-video flex-col items-center justify-end gap-4  overflow-clip rounded-sm border-global_sm">
-      <button className="group/favourite absolute left-0 top-0 -translate-x-full rounded-br-sm border-b-global_sm border-r-global_sm bg-foreground p-3 transition  group-hover:translate-x-0">
+      <button
+        onClick={toggleFavourite}
+        disabled={pendingFavourite || pendingUnfavourite}
+        className="group/favourite absolute left-0 top-0 -translate-x-full rounded-br-sm border-b-global_sm border-r-global_sm bg-foreground p-3 transition  group-hover:translate-x-0"
+      >
         {!isFavourite && (
           <StarIcon className="h-6 w-6 text-background group-hover/favourite:text-primary" />
         )}

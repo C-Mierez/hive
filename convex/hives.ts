@@ -20,6 +20,24 @@ export const get = query({
       .order("desc")
       .collect();
 
-    return hives;
+    // This is a bit of a hack to get the isFavourite property on the hives
+    const hivesWithFavourites = hives.map((hive) => {
+      return ctx.db
+        .query("favouriteHives")
+        .withIndex("by_user_hive", (q) =>
+          q.eq("userId", identity.subject).eq("hiveId", hive._id),
+        )
+        .unique()
+        .then((favourite) => {
+          return {
+            ...hive,
+            isFavourite: !!favourite,
+          };
+        });
+    });
+
+    const hivesWithFavouritesResolved = await Promise.all(hivesWithFavourites);
+
+    return hivesWithFavouritesResolved;
   },
 });

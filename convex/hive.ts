@@ -38,7 +38,19 @@ export const remove = mutation({
       throw new Error("Unauthorized");
     }
 
-    // TODO: Remove favourite hives
+    const userId = identity.subject;
+
+    const existingFavourites = await ctx.db
+      .query("favouriteHives")
+      .withIndex("by_user_hive", (q) =>
+        q.eq("userId", userId).eq("hiveId", args.id),
+      )
+      .collect();
+
+    // Remove all favourites for this hive
+    await Promise.all(
+      existingFavourites.map((favourite) => ctx.db.delete(favourite._id)),
+    );
 
     await ctx.db.delete(args.id);
   },
@@ -67,6 +79,83 @@ export const update = mutation({
     }
 
     const hive = await ctx.db.patch(args.id, { title });
+
+    return hive;
+  },
+});
+
+export const favourite = mutation({
+  args: {
+    hiveId: v.id("hive"),
+    colonyId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Unauthorized");
+    }
+
+    const hive = await ctx.db.get(args.hiveId);
+
+    if (!hive) {
+      throw new Error("Hive not found");
+    }
+
+    const userId = identity.subject;
+
+    const existingFavourite = await ctx.db
+      .query("favouriteHives")
+      .withIndex("by_user_hive", (q) =>
+        q.eq("userId", userId).eq("hiveId", args.hiveId),
+      )
+      .unique();
+
+    if (existingFavourite) {
+      throw new Error("Hive already favourited");
+    }
+
+    await ctx.db.insert("favouriteHives", {
+      userId,
+      colonyId: args.colonyId,
+      hiveId: args.hiveId,
+    });
+
+    return hive;
+  },
+});
+
+export const unfavourite = mutation({
+  args: {
+    hiveId: v.id("hive"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Unauthorized");
+    }
+
+    const hive = await ctx.db.get(args.hiveId);
+
+    if (!hive) {
+      throw new Error("Hive not found");
+    }
+
+    const userId = identity.subject;
+
+    const existingFavourite = await ctx.db
+      .query("favouriteHives")
+      .withIndex("by_user_hive", (q) =>
+        q.eq("userId", userId).eq("hiveId", hive._id),
+      )
+      .unique();
+
+    if (!existingFavourite) {
+      throw new Error("Hive was not found");
+    }
+
+    await ctx.db.delete(existingFavourite._id);
 
     return hive;
   },

@@ -61,7 +61,7 @@ export default function HiveList({ colonyId, query }: HiveListParams) {
                 authorName={hive.authorName}
                 createdAt={hive._creationTime}
                 imageUrl={hive.imageUrl}
-                isFavourite={false}
+                isFavourite={hive.isFavourite}
               />
             </li>
           );

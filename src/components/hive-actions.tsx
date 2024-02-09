@@ -96,6 +96,7 @@ export default function HiveActions({
         >
           <Button
             variant={"ghost"}
+            brutal={false}
             disabled={pendingRemoveHive}
             className="w-full justify-start border-none p-2 text-sm font-normal"
           >
