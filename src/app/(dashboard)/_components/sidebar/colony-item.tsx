@@ -9,7 +9,7 @@ interface ItemParams {
   imageUrl: string;
 }
 
-export default function OrganizationItem({ id, name, imageUrl }: ItemParams) {
+export default function ColonyItem({ id, name, imageUrl }: ItemParams) {
   const { organization } = useOrganization();
   const { setActive } = useOrganizationList();
 
@@ -30,7 +30,7 @@ export default function OrganizationItem({ id, name, imageUrl }: ItemParams) {
           onClick={onClick}
           fill
           className={cn(
-            "cursor-pointer rounded-sm opacity-75 transition hover:opacity-100",
+            "brutalHover_sm border-global_sm cursor-pointer rounded-sm opacity-75 transition hover:opacity-100",
             isActive && "opacity-100",
           )}
         />

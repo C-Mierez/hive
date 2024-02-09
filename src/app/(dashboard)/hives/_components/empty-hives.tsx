@@ -37,7 +37,7 @@ export default function EmptyHives() {
           Start by creating a Hive for your colony
         </p>
       </div>
-      <Button onClick={onClick} disabled={pending}>
+      <Button onClick={onClick} disabled={pending} size={"lg"}>
         Create new Hive
       </Button>
     </div>

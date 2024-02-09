@@ -1,9 +1,9 @@
 "use client";
 
 import { useOrganizationList } from "@clerk/nextjs";
-import OrganizationItem from "./org-item";
+import ColonyItem from "./colony-item";
 
-export default function OrganizationList() {
+export default function ColonyList() {
   const { userMemberships } = useOrganizationList({
     userMemberships: {
       infinite: true,
@@ -16,7 +16,7 @@ export default function OrganizationList() {
   return (
     <ul className="flex flex-col gap-2">
       {userMemberships.data?.map((membership) => (
-        <OrganizationItem
+        <ColonyItem
           key={membership.id}
           id={membership.organization.id}
           name={membership.organization.name}

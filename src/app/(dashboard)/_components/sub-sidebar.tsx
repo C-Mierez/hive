@@ -42,7 +42,7 @@ export default function SubSidebar() {
         <Button
           asChild
           size={"lg"}
-          variant={!favourites ? "default" : "outline"}
+          variant={!favourites ? "accent" : "outline"}
           className="flex  w-full justify-start gap-[1ch] px-4"
         >
           <Link href={"/hives"}>
@@ -53,7 +53,7 @@ export default function SubSidebar() {
         <Button
           asChild
           size={"lg"}
-          variant={favourites ? "default" : "outline"}
+          variant={favourites ? "accent" : "outline"}
           className="flex  w-full justify-start gap-[1ch] px-4"
         >
           <Link
