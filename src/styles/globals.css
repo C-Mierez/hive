@@ -38,6 +38,8 @@
     --border-width-global: 2px;
     --border-width-sm: 1px;
 
+    --height-navbar: 4rem;
+
     --padding-global: 3rem;
     --padding-vertical: 10rem;
 
@@ -88,5 +90,9 @@ li {
   .brutalHover_sm {
     @apply shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[-3px] hover:translate-y-[-3px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)];
     @apply active:translate-x-0 active:translate-y-0 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  .underlineHover {
+    @apply relative transition-all before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-0 before:bg-foreground before:transition-all before:content-[""] before:hover:w-full;
   }
 }

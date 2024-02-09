@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      height: {
+        navbar: "var(--height-navbar)",
+      },
       boxShadow: {
         brutal: "4px 4px 0 0px hsl(var(--border))",
         brutal_sm: "2px 2px 0 0px hsl(var(--border))",
