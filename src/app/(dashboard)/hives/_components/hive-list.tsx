@@ -18,7 +18,7 @@ interface HiveListParams {
 }
 
 export default function HiveList({ colonyId, query }: HiveListParams) {
-  const data = useQuery(api.hives.get, { colonyId });
+  const data = useQuery(api.hives.get, { colonyId, ...query });
 
   if (data === undefined) {
     return (
