@@ -1,13 +1,16 @@
 "use client";
 
 import { useOrganization } from "@clerk/nextjs";
+import { useMutation } from "convex/react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { api } from "~/../convex/_generated/api";
 import { Button } from "~/components/ui/button";
-import useConvexMutation from "~/hooks/use-convex-mutation";
+import handleConvexPending from "~/lib/handle-convex-pending";
 
 export default function EmptyHives() {
-  const { mutate, pending } = useConvexMutation(api.hive.create);
+  const [pending, setPending] = useState(false);
+  const mutate = useMutation(api.hive.create);
 
   const { organization } = useOrganization();
 
@@ -17,10 +20,13 @@ export default function EmptyHives() {
     }
 
     toast.promise(
-      mutate({
-        colonyId: organization.id,
-        title: "Untitled",
-      }),
+      handleConvexPending(
+        mutate({
+          colonyId: organization.id,
+          title: "Untitled",
+        }),
+        setPending,
+      ),
       {
         loading: "Creating Hive...",
         success: "Hive created successfully",

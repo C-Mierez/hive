@@ -1,5 +1,3 @@
-import { Button } from "~/components/ui/button";
-
 export default function EndSection() {
   return (
     <section className="border-y-global bg-primary py-vertical">

@@ -1,10 +1,11 @@
 "use client";
 
-import { useOrganization } from "@clerk/nextjs";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { api } from "~/../convex/_generated/api";
+import { useMutation } from "convex/react";
+import { useState } from "react";
 import { toast } from "sonner";
-import useConvexMutation from "~/hooks/use-convex-mutation";
+import { api } from "~/../convex/_generated/api";
+import handleConvexPending from "~/lib/handle-convex-pending";
 
 interface NewHiveCardParams {
   colonyId: string;
@@ -12,14 +13,18 @@ interface NewHiveCardParams {
 }
 
 export default function NewHiveCard({ colonyId, disabled }: NewHiveCardParams) {
-  const { mutate, pending } = useConvexMutation(api.hive.create);
+  const [pending, setPending] = useState(false);
+  const mutate = useMutation(api.hive.create);
 
   const onClick = () => {
     toast.promise(
-      mutate({
-        colonyId,
-        title: "Untitled",
-      }),
+      handleConvexPending(
+        mutate({
+          colonyId,
+          title: "Untitled",
+        }),
+        setPending,
+      ),
       {
         loading: "Creating Hive...",
         success: "Hive created successfully.",
@@ -32,12 +37,12 @@ export default function NewHiveCard({ colonyId, disabled }: NewHiveCardParams) {
     <button
       disabled={pending || disabled}
       onClick={onClick}
-      className="border-global_sm brutalHover group relative flex aspect-video flex-col items-center justify-end gap-4 overflow-clip rounded-sm"
+      className="brutalHover group relative flex aspect-video flex-col items-center justify-end gap-4 overflow-clip rounded-sm border-global_sm"
     >
       <div className="absolute left-0 top-0 -z-10 grid h-full w-full flex-1 place-items-center bg-muted-foreground p-4 transition group-hover:scale-[1.1]">
         <PlusIcon className="h-16 w-16 text-background" />
       </div>
-      <div className="z-1 border-t-global_sm w-full translate-y-full bg-background p-4 transition group-hover:translate-y-0">
+      <div className="z-1 w-full translate-y-full border-t-global_sm bg-background p-4 transition group-hover:translate-y-0">
         <h1 className="text-lg font-bold">Create a new Hive</h1>
         <p className="text-sm text-muted-foreground">
           Start a brand new Hive for this colony

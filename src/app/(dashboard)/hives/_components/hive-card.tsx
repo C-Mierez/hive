@@ -1,16 +1,15 @@
 "use client";
 
 import { useAuth } from "@clerk/nextjs";
-import Image from "next/image";
-import Link from "next/link";
-import { formatDistanceToNow } from "date-fns";
 import {
   DotsVerticalIcon,
   StarFilledIcon,
   StarIcon,
 } from "@radix-ui/react-icons";
+import { formatDistanceToNow } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
 import HiveActions from "~/components/hive-actions";
-import { Button } from "~/components/ui/button";
 
 interface HiveCardParams {
   id: string;
@@ -42,8 +41,8 @@ export default function HiveCard({
   });
 
   return (
-    <div className="border-global_sm brutalHover group relative flex aspect-video flex-col items-center justify-end  gap-4 overflow-clip rounded-sm">
-      <button className="border-r-global_sm border-b-global_sm group/favourite absolute left-0 top-0 -translate-x-full rounded-br-sm bg-foreground p-3 transition  group-hover:translate-x-0">
+    <div className="brutalHover group relative flex aspect-video flex-col items-center justify-end gap-4  overflow-clip rounded-sm border-global_sm">
+      <button className="group/favourite absolute left-0 top-0 -translate-x-full rounded-br-sm border-b-global_sm border-r-global_sm bg-foreground p-3 transition  group-hover:translate-x-0">
         {!isFavourite && (
           <StarIcon className="h-6 w-6 text-background group-hover/favourite:text-primary" />
         )}
@@ -61,7 +60,7 @@ export default function HiveCard({
           />
         </div>
       </Link>
-      <div className="z-1 border-t-global_sm w-full cursor-default bg-background">
+      <div className="z-1 w-full cursor-default border-t-global_sm bg-background">
         <div className="flex items-center p-4">
           <div className="flex flex-1 flex-col justify-center">
             <h1 className="w-fit text-lg font-bold">{title}</h1>

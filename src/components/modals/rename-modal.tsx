@@ -1,6 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { FormEvent, useEffect, useState } from "react";
+import { toast } from "sonner";
+import { api } from "~/../convex/_generated/api";
 import { useRenameModal } from "~/store/use-rename-modal";
+
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogClose,
@@ -10,17 +16,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-import { FormEvent, useEffect, useState } from "react";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import useConvexMutation from "~/hooks/use-convex-mutation";
-import { api } from "~/../convex/_generated/api";
-import { toast } from "sonner";
+import { useMutation } from "convex/react";
+import handleConvexPending from "~/lib/handle-convex-pending";
+import { Id } from "convex/_generated/dataModel";
 
 export default function RenameModal() {
   const modal = useRenameModal();
   const [title, setTitle] = useState(modal.initialValues.title);
-  const { mutate, pending } = useConvexMutation(api.hive.update);
+  const [pending, setPending] = useState(false);
+  const mutate = useMutation(api.hive.update);
 
   useEffect(() => {
     setTitle(modal.initialValues.title);
@@ -30,10 +35,13 @@ export default function RenameModal() {
     e.preventDefault();
 
     toast.promise(
-      mutate({
-        id: modal.initialValues.id,
-        title,
-      }).then(() => {
+      handleConvexPending(
+        mutate({
+          id: modal.initialValues.id as Id<"hive">,
+          title,
+        }),
+        setPending,
+      ).then(() => {
         modal.onClose();
       }),
       {

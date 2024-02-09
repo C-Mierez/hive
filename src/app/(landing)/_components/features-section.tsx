@@ -1,11 +1,11 @@
-import { ClassValue } from "clsx";
+import type { ClassValue } from "clsx";
 import React from "react";
 import { cn } from "~/lib/utils";
 
 export default function FeaturesSection() {
   return (
     <section>
-      <div className="py-vertical container grid gap-8">
+      <div className="container grid gap-8 py-vertical">
         <h1 className="text-center text-7xl">Dive into our features</h1>
         <h2 className="text-center text-4xl leading-tight">
           Discover the aspects that make Hive your ultimate go-to platform for
@@ -19,7 +19,7 @@ export default function FeaturesSection() {
             "Bring your team together effortlessly. With Hive, collaboration happens in real-time, no delays, just a hive of synchronized creativity.",
         }}
       >
-        <div className="border-global shadow-brutal relative min-h-[40vh] overflow-clip rounded-sm bg-background">
+        <div className="relative min-h-[40vh] overflow-clip rounded-sm border-global bg-background shadow-brutal">
           <div className="absolute left-0 top-0 flex h-[10%] w-full items-center gap-2 bg-foreground px-4">
             <div className="h-4 w-4 rounded-full bg-background" />
             <div className="h-4 w-4 rounded-full bg-background" />
@@ -41,7 +41,7 @@ export default function FeaturesSection() {
             "Break free from constraints. Hive offers an infinite canvas, letting your ideas flow without limits. Your creativity knows no bounds on Hive.",
         }}
       >
-        <div className="border-global shadow-brutal relative min-h-[40vh] overflow-clip rounded-sm bg-background">
+        <div className="relative min-h-[40vh] overflow-clip rounded-sm border-global bg-background shadow-brutal">
           <div className="absolute left-0 top-0 flex h-[10%] w-full items-center gap-2 bg-foreground px-4">
             <div className="h-4 w-4 rounded-full bg-background" />
             <div className="h-4 w-4 rounded-full bg-background" />
@@ -62,7 +62,7 @@ export default function FeaturesSection() {
             "Share your hive securely. Hive ensures your collaborative work is shared seamlessly and with the utmost privacy, fostering trust among your team.",
         }}
       >
-        <div className="border-global shadow-brutal relative min-h-[40vh] overflow-clip rounded-sm bg-background">
+        <div className="relative min-h-[40vh] overflow-clip rounded-sm border-global bg-background shadow-brutal">
           <div className="absolute left-0 top-0 flex h-[10%] w-full items-center gap-2 bg-foreground px-4">
             <div className="h-4 w-4 rounded-full bg-background" />
             <div className="h-4 w-4 rounded-full bg-background" />
@@ -98,13 +98,13 @@ function FeatureDiv(params: FeatureDivParams) {
     </div>
   );
   const feature = (
-    <div className="px-global py-vertical50 grid h-fit gap-8">
+    <div className="grid h-fit gap-8 px-global py-vertical50">
       <h3 className="text-5xl">{params.feature.title}</h3>
       <p className="text-2xl">{params.feature.description}</p>
     </div>
   );
   return (
-    <div className="border-y-global grid grid-cols-2">
+    <div className="grid grid-cols-2 border-y-global">
       {params.flipped ? feature : image}
       {params.flipped ? image : feature}
     </div>
@@ -122,14 +122,14 @@ function Testimonial(params: TestimonialParams) {
   const avatar = (
     <div
       className={cn(
-        "px-global py-vertical50 grid h-full w-full place-items-center",
+        "grid h-full w-full place-items-center px-global py-vertical50",
       )}
     >
       {params.avatar}
     </div>
   );
   const quote = (
-    <div className="py-vertical px-global2 grid h-fit gap-32">
+    <div className="grid h-fit gap-32 px-global2 py-vertical">
       <h3 className="text-5xl leading-tight">{params.quote}</h3>
       <p className="text-2xl">
         {"- "}

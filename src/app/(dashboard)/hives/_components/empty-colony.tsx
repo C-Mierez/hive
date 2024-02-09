@@ -8,7 +8,7 @@ export default function EmptyColony() {
       <div className="text-center">
         <h2 className="text-2xl font-semibold">Welcome to your dashboard!</h2>
         <p className="text-muted-foreground">
-          You don't have any Colonies yet.
+          {"You don't have any Colonies yet."}
         </p>
       </div>
       <Dialog>

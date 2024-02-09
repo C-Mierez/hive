@@ -18,7 +18,7 @@ export default function ColonyItem({ id, name, imageUrl }: ItemParams) {
   const onClick = () => {
     if (!setActive) return;
 
-    setActive({ organization: id });
+    void setActive({ organization: id });
   };
 
   return (
@@ -30,7 +30,7 @@ export default function ColonyItem({ id, name, imageUrl }: ItemParams) {
           onClick={onClick}
           fill
           className={cn(
-            "brutalHover_sm border-global_sm cursor-pointer rounded-sm opacity-75 transition hover:opacity-100",
+            "brutalHover_sm cursor-pointer rounded-sm border-global_sm opacity-75 transition hover:opacity-100",
             isActive && "opacity-100",
           )}
         />

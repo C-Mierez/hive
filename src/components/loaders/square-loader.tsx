@@ -1,5 +1,5 @@
 import { cn } from "~/lib/utils";
-import css from "./loaders.module.css";
+import css from "./loaders.module.scss";
 
 export default function SquareLoader({
   size = "md",
