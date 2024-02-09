@@ -16,9 +16,9 @@ export default function AddButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="aspect-square">
+        <div className="aspect-square w-full">
           <Hint label="New organization" side="right" align="start">
-            <button className=" brutalHover_sm border-global_sm h-full w-full rounded-sm bg-primary p-2">
+            <button className=" brutalHover_sm border-global_sm grid h-full w-full place-items-center rounded-sm bg-primary p-2">
               <PlusIcon className="text-foreground" />
             </button>
           </Hint>

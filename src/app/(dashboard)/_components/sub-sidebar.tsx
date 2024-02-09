@@ -13,9 +13,6 @@ export default function SubSidebar() {
 
   return (
     <div className="border-r-global_sm flex h-screen flex-col gap-2 bg-muted/50 p-4">
-      <Link href="/" className="font-black">
-        HIVE
-      </Link>
       <OrganizationSwitcher
         hidePersonal
         appearance={{

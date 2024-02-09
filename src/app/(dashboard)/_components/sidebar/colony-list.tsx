@@ -14,7 +14,7 @@ export default function ColonyList() {
     return null;
 
   return (
-    <ul className="flex flex-col gap-2">
+    <ul className="flex w-full flex-col gap-2">
       {userMemberships.data?.map((membership) => (
         <ColonyItem
           key={membership.id}
