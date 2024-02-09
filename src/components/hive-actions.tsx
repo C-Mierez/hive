@@ -58,7 +58,7 @@ export default function HiveActions({
 
   const onCopyLink = () => {
     toast.promise(
-      navigator.clipboard.writeText(`${window.location.origin}/hives/${id}`),
+      navigator.clipboard.writeText(`${window.location.origin}/hive/${id}`),
       {
         loading: "Copying link...",
         success: "Link copied!",

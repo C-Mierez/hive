@@ -92,7 +92,7 @@ export default function HiveCard({
           <StarFilledIcon className="h-6 w-6 text-background group-hover/favourite:text-primary" />
         )}
       </button>
-      <Link href={`/hives/${id}`}>
+      <Link href={`/hive/${id}`}>
         <div className="absolute left-0 top-0 -z-10 h-full w-full">
           <Image
             src={imageUrl}
