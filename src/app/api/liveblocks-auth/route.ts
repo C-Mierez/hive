@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   }
 
   const userInfo = {
-    name: user.firstName || "Fellow Bee",
+    name: user.username || "Fellow Bee",
     picture: user.imageUrl!,
   };
 
