@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import Info from "./info";
 import Participants from "./participants";
 import Toolbar from "./toolbar";
@@ -17,14 +17,16 @@ import {
   useCanUndo,
   useHistory,
   useMutation,
+  useOthersMapped,
   useStorage,
 } from "@/liveblocks.config";
 import { CursorPresence } from "./cursors-presence";
-import { pointerEventToCanvasPoint } from "~/lib/utils";
+import { connectionToColor, pointerEventToCanvasPoint } from "~/lib/utils";
 import { motion } from "framer-motion";
 import { nanoid } from "nanoid";
 import { LiveObject } from "@liveblocks/client";
 import { LayerPreview } from "./layer-preview";
+import { SelectionBox } from "./selection-box";
 
 interface CanvasParams {
   hiveId: string;
@@ -40,17 +42,68 @@ export default function Canvas({ hiveId }: CanvasParams) {
   const [camera, setCamera] = useState<Camera>({ x: 0, y: 0 });
 
   const [lastUsedColor, setLastUsedColor] = useState<Color>({
-    r: 0,
-    g: 0,
-    b: 0,
+    r: 5,
+    g: 5,
+    b: 5,
     a: 1,
   });
 
   const layerIds = useStorage((root) => root.layerIds);
 
+  const selections = useOthersMapped((other) => {
+    return other.presence.selection;
+  });
+
   const history = useHistory();
   const canUndo = useCanUndo();
   const canRedo = useCanRedo();
+
+  const layerIdsToColorSelection = useMemo(() => {
+    const layerIdsToColorSelection: Record<string, string> = {};
+
+    for (const user of selections) {
+      const [connectionId, selection] = user;
+
+      for (const layerId of selection) {
+        layerIdsToColorSelection[layerId] = connectionToColor(connectionId);
+      }
+    }
+
+    return layerIdsToColorSelection;
+  }, [selections]);
+
+  const onLayerPointerDown = useMutation(
+    (ctx, e: React.PointerEvent, layerId: string) => {
+      if (
+        canvasState.mode === CanvasMode.Pencil ||
+        canvasState.mode === CanvasMode.Inserting
+      ) {
+        return;
+      }
+
+      history.pause();
+      e.stopPropagation();
+
+      const point = pointerEventToCanvasPoint(e, camera);
+
+      if (!ctx.self.presence.selection.includes(layerId)) {
+        ctx.setMyPresence(
+          {
+            selection: [layerId],
+          },
+          {
+            addToHistory: true,
+          },
+        );
+      }
+
+      setCanvasState({
+        mode: CanvasMode.Translating,
+        current: point,
+      });
+    },
+    [canvasState, history, camera, canvasState.mode],
+  );
 
   const insertLayer = useMutation(
     (
@@ -169,11 +222,12 @@ export default function Canvas({ hiveId }: CanvasParams) {
               <LayerPreview
                 key={layerId}
                 id={layerId}
-                onLayerPointerDown={() => {}}
-                selectionColor="#000"
+                onLayerPointerDown={onLayerPointerDown}
+                selectionColor={layerIdsToColorSelection[layerId]}
               />
             );
           })}
+          <SelectionBox onResizeHandlePointerDown={() => {}} />
           <CursorPresence />
         </motion.g>
       </svg>
