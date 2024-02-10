@@ -73,12 +73,12 @@ li {
 
 ::-moz-selection {
   /* Code for Firefox */
-  color: hsl(var(--primary));
+  color: hsl(var(--foreground));
   background: hsl(var(--muted));
 }
 
 ::selection {
-  color: hsl(var(--primary));
+  color: hsl(var(--foreground));
   background: hsl(var(--muted));
 }
 
