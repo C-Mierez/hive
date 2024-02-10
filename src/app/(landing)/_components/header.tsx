@@ -5,7 +5,7 @@ import css from "./landing.module.css";
 import { useConvexAuth } from "convex/react";
 
 export default function Header() {
-  const { isAuthenticated } = useConvexAuth();
+  const { isAuthenticated, isLoading } = useConvexAuth();
 
   const items = [
     { label: "Features" },
@@ -23,26 +23,37 @@ export default function Header() {
           ))}
         </ul>
         <ul className="flex items-stretch ">
-          {isAuthenticated ? null : (
-            <li>
-              <SignUpButton>
-                <button
-                  type="button"
-                  className="grid h-full place-items-center border-l-global px-global hover:bg-primary"
+          {isLoading ? null : !isAuthenticated ? (
+            <>
+              <li>
+                <SignUpButton>
+                  <button
+                    type="button"
+                    className="grid h-full place-items-center border-l-global px-global hover:bg-primary"
+                  >
+                    Login
+                  </button>
+                </SignUpButton>
+              </li>
+              <li>
+                <a
+                  href="/hives"
+                  className="grid h-full place-items-center border-l-global bg-foreground px-global text-background  hover:bg-primary hover:text-foreground"
                 >
-                  Login
-                </button>
-              </SignUpButton>
+                  Get Started
+                </a>
+              </li>
+            </>
+          ) : (
+            <li>
+              <a
+                href="/hives"
+                className="grid h-full place-items-center border-l-global bg-foreground px-global text-background  hover:bg-primary hover:text-foreground"
+              >
+                Dashboard
+              </a>
             </li>
           )}
-          <li>
-            <a
-              href="/hives"
-              className="grid h-full place-items-center border-l-global bg-foreground px-global text-background  hover:bg-primary hover:text-foreground"
-            >
-              {isAuthenticated ? "Dashboard" : "Get Started"}
-            </a>
-          </li>
         </ul>
       </nav>
     </header>
