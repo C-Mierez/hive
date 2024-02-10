@@ -90,6 +90,13 @@ export type NoteLayer = {
   value?: string;
 };
 
+export type Layer =
+  | RectangleLayer
+  | CircleLayer
+  | TextLayer
+  | PathLayer
+  | NoteLayer;
+
 /* --------------------------------- Canvas --------------------------------- */
 export enum CanvasMode {
   None,
