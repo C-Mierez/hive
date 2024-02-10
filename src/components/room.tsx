@@ -11,7 +11,12 @@ interface RoomParams {
 
 export default function Room({ children, roomId, fallback }: RoomParams) {
   return (
-    <RoomProvider id={roomId} initialPresence={{}}>
+    <RoomProvider
+      id={roomId}
+      initialPresence={{
+        cursor: null,
+      }}
+    >
       <ClientSideSuspense fallback={fallback}>
         {() => children}
       </ClientSideSuspense>

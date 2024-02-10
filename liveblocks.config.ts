@@ -2,6 +2,7 @@ import { createClient } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 
 const client = createClient({
+  throttle: 60,
   authEndpoint: "/api/liveblocks-auth",
 });
 
@@ -11,6 +12,7 @@ const client = createClient({
 type Presence = {
   // cursor: { x: number, y: number } | null,
   // ...
+  cursor: { x: number; y: number } | null;
 };
 
 // Optionally, Storage represents the shared document that persists in the
