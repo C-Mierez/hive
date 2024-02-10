@@ -17,7 +17,7 @@ const UserColors = [
 ];
 
 export function connectionToColor(connectionId: number) {
-  return UserColors[connectionId % UserColors.length];
+  return UserColors[connectionId % UserColors.length]!;
 }
 
 export function pointerEventToCanvasPoint(
