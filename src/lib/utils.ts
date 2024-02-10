@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Camera } from "~/types/canvas";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -17,4 +18,14 @@ const UserColors = [
 
 export function connectionToColor(connectionId: number) {
   return UserColors[connectionId % UserColors.length];
+}
+
+export function pointerEventToCanvasPoint(
+  event: React.PointerEvent,
+  camera: Camera,
+) {
+  return {
+    x: Math.round(event.clientX) - camera.x,
+    y: Math.round(event.clientY) - camera.y,
+  };
 }
