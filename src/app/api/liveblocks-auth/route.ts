@@ -1,6 +1,6 @@
 import { auth, currentUser } from "@clerk/nextjs";
 import { Liveblocks } from "@liveblocks/node";
-import { api } from "~/../convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import { ConvexHttpClient } from "convex/browser";
 import { env } from "~/env";
 

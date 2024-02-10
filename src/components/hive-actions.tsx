@@ -1,7 +1,7 @@
 import type { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
 import { Link2Icon, Pencil2Icon, TrashIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
-import { api } from "~/../convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import { Button } from "~/components/ui/button";
 import { useRenameModal } from "~/store/use-rename-modal";
 

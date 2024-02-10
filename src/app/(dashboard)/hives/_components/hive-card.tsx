@@ -6,7 +6,7 @@ import {
   StarFilledIcon,
   StarIcon,
 } from "@radix-ui/react-icons";
-import { api } from "~/../convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import { Id } from "convex/_generated/dataModel";
 import { useMutation } from "convex/react";
 import { formatDistanceToNow } from "date-fns";

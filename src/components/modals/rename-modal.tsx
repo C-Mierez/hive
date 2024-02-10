@@ -3,7 +3,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
-import { api } from "~/../convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import { useRenameModal } from "~/store/use-rename-modal";
 
 import { Button } from "../ui/button";

@@ -4,7 +4,7 @@ import { useQuery } from "convex/react";
 import EmptyFavourites from "./empty-favourites";
 import EmptyHives from "./empty-hives";
 import EmptySearch from "./empty-search";
-import { api } from "~/../convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import SquareLoader from "~/components/loaders/square-loader";
 import HiveCard from "./hive-card";
 import NewHiveCard from "./new-hive-card";

@@ -5,7 +5,7 @@ import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { api } from "~/../convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import handleConvexPending from "~/lib/handle-convex-pending";
 
 interface NewHiveCardParams {
