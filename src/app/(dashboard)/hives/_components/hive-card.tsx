@@ -109,7 +109,7 @@ export default function HiveCard({
       <div className="z-[1] w-full cursor-default border-t-global_sm bg-background">
         <div className="flex items-center p-4">
           <div className="flex flex-1 flex-col justify-center">
-            <h1 className="w-fit text-lg font-bold">{title}</h1>
+            <h1 className="line-clamp-1 w-fit text-lg font-bold">{title}</h1>
             <p className="w-fit text-sm text-muted-foreground">
               {authorLabel}, {createdAtLabel}
             </p>
