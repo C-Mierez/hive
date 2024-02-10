@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Camera } from "~/types/canvas";
+import { Camera, Color } from "~/types/canvas";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -28,4 +28,8 @@ export function pointerEventToCanvasPoint(
     x: Math.round(event.clientX) - camera.x,
     y: Math.round(event.clientY) - camera.y,
   };
+}
+
+export function colorToRGBA(color: Color) {
+  return `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
 }
