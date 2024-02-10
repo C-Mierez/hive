@@ -1,7 +1,7 @@
 "use client";
 
 import { useOthers, useSelf } from "@/liveblocks.config";
-import CanvasAvatar from "./user-avatar";
+import CanvasAvatar from "./canvas-avatar";
 import { connectionToColor } from "~/lib/utils";
 
 const MAX_SHOWN_COLLABORATORS = 2;

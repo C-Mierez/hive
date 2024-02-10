@@ -17,7 +17,7 @@ export default function CanvasAvatar({
 }: CanvasAvatarParams) {
   return (
     <Hint label={name || "Fellow Bee"} side="bottom">
-      <Avatar className={cn("h-8 w-8 rounded-sm")}>
+      <Avatar className="h-8 w-8 rounded-sm">
         <AvatarImage src={src} />
         <AvatarFallback className="text-sm font-medium">
           {fallback}
