@@ -25,7 +25,7 @@ export default function LayerRectangle({
       style={{ transform: `translate(${x}px, ${y}px)` }}
       fill={colorToRGBA(fill)}
       stroke={selectionColor}
-      strokeWidth={id === selectionColor ? 2 : 0}
+      strokeWidth={selectionColor ? 2 : 0}
       onPointerDown={(e) => onLayerPointerDown(e, id)}
     />
   );
