@@ -11,6 +11,7 @@ export type XYHW = {
   width: number;
 };
 
+// Bitmask for the sides of a rectangle
 export enum Side {
   Top = 1,
   Bottom = 2,

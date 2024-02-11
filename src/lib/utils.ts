@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
+import { Point } from "framer-motion";
 import { twMerge } from "tailwind-merge";
-import { Camera, Color } from "~/types/canvas";
+import { Camera, Color, Side, XYHW } from "~/types/canvas";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -32,4 +33,37 @@ export function pointerEventToCanvasPoint(
 
 export function colorToRGBA(color: Color) {
   return `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
+}
+
+export function resizeBounds(bounds: XYHW, corner: Side, point: Point) {
+  const { x, y, width, height } = bounds;
+
+  const result = {
+    x,
+    y,
+    width,
+    height,
+  };
+
+  if ((corner & Side.Left) === Side.Left) {
+    result.x = Math.min(point.x, x + width);
+    result.width = Math.abs(x + width - point.x);
+  }
+
+  if ((corner & Side.Right) === Side.Right) {
+    result.x = Math.min(point.x, x);
+    result.width = Math.abs(point.x - x);
+  }
+
+  if ((corner & Side.Top) === Side.Top) {
+    result.y = Math.min(point.y, y + height);
+    result.height = Math.abs(y + height - point.y);
+  }
+
+  if ((corner & Side.Bottom) === Side.Bottom) {
+    result.y = Math.min(point.y, y);
+    result.height = Math.abs(point.y - y);
+  }
+
+  return result;
 }
