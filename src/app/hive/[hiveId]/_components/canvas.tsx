@@ -113,7 +113,6 @@ export default function Canvas({ hiveId }: CanvasParams) {
 
   const onResizeHandlePointerDown = useCallback(
     (corner: Side, initialBounds: XYHW) => {
-      console.log(corner, initialBounds);
       history.pause();
       setCanvasState({
         mode: CanvasMode.Resizing,
@@ -171,6 +170,38 @@ export default function Canvas({ hiveId }: CanvasParams) {
     [lastUsedColor],
   );
 
+  const translateSelectedLayers = useMutation(
+    (ctx, point: Point) => {
+      if (canvasState.mode !== CanvasMode.Translating) {
+        return;
+      }
+
+      const offset = {
+        x: point.x - canvasState.current.x,
+        y: point.y - canvasState.current.y,
+      };
+
+      const liveLayers = ctx.storage.get("layers");
+
+      for (const id of ctx.self.presence.selection) {
+        const layer = liveLayers.get(id);
+
+        if (layer) {
+          layer.update({
+            x: layer.get("x") + offset.x,
+            y: layer.get("y") + offset.y,
+          });
+        }
+      }
+
+      setCanvasState({
+        mode: CanvasMode.Translating,
+        current: point,
+      });
+    },
+    [canvasState],
+  );
+
   const resizeSelectedLayer = useMutation(
     (ctx, point: Point) => {
       if (canvasState.mode !== CanvasMode.Resizing) {
@@ -193,6 +224,12 @@ export default function Canvas({ hiveId }: CanvasParams) {
     [canvasState],
   );
 
+  const unselectSelectedLayers = useMutation((ctx) => {
+    if (ctx.self.presence.selection.length > 0) {
+      ctx.setMyPresence({ selection: [] }, { addToHistory: true });
+    }
+  }, []);
+
   /* --------------------------------- Events --------------------------------- */
   const onWheel = useCallback((e: React.WheelEvent) => {
     setCamera((prev) => {
@@ -208,24 +245,52 @@ export default function Canvas({ hiveId }: CanvasParams) {
       e.preventDefault();
       const current = pointerEventToCanvasPoint(e, camera);
 
+      if (canvasState.mode === CanvasMode.Translating) {
+        translateSelectedLayers(current);
+      }
+
       if (canvasState.mode === CanvasMode.Resizing) {
         resizeSelectedLayer(current);
       }
 
       ctx.setMyPresence({ cursor: current });
     },
-    [canvasState, camera, resizeSelectedLayer],
+    [canvasState, camera, resizeSelectedLayer, translateSelectedLayers],
   );
 
   const onPointerLeave = useMutation((ctx) => {
     ctx.setMyPresence({ cursor: null });
   }, []);
 
+  const onPointerDown = useCallback(
+    (e: React.PointerEvent) => {
+      const point = pointerEventToCanvasPoint(e, camera);
+
+      if (canvasState.mode === CanvasMode.Inserting) {
+        return;
+      }
+
+      setCanvasState({
+        mode: CanvasMode.Pressing,
+        origin: point,
+      });
+    },
+    [canvasState.mode, camera, setCanvasState],
+  );
+
   const onPointerUp = useMutation(
     (ctx, e) => {
       const point = pointerEventToCanvasPoint(e, camera);
 
-      if (canvasState.mode === CanvasMode.Inserting) {
+      if (
+        canvasState.mode === CanvasMode.None ||
+        canvasState.mode === CanvasMode.Pressing
+      ) {
+        unselectSelectedLayers();
+        setCanvasState({
+          mode: CanvasMode.None,
+        });
+      } else if (canvasState.mode === CanvasMode.Inserting) {
         insertLayer(LayerType.Rectangle, point);
       } else {
         setCanvasState({
@@ -235,7 +300,7 @@ export default function Canvas({ hiveId }: CanvasParams) {
 
       history.resume();
     },
-    [camera, canvasState, history, insertLayer],
+    [camera, canvasState, history, insertLayer, unselectSelectedLayers],
   );
 
   return (
@@ -257,6 +322,7 @@ export default function Canvas({ hiveId }: CanvasParams) {
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
         onPointerUp={onPointerUp}
+        onPointerDown={onPointerDown}
       >
         <motion.g
           initial={{ x: 0, y: 0 }}
