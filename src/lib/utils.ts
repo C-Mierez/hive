@@ -7,9 +7,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const UserColors = [
+export const UserColors = [
   "#B03030",
-  "#17B890",
   "#17B890",
   "#326EB3",
   "#463F3A",
