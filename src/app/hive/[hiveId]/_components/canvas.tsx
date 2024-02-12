@@ -33,6 +33,7 @@ import { nanoid } from "nanoid";
 import { LiveObject } from "@liveblocks/client";
 import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./selection-box";
+import SelectionToolbar from "./selection-toolbar";
 
 interface CanvasParams {
   hiveId: string;
@@ -315,6 +316,8 @@ export default function Canvas({ hiveId }: CanvasParams) {
         canUndo={canUndo}
         canRedo={canRedo}
       />
+      <SelectionToolbar camera={camera} setLastUsedColor={setLastUsedColor} />
+
       {/* Canvas */}
       <svg
         className="h-screen w-full"
