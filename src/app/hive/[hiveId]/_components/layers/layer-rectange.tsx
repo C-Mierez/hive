@@ -31,12 +31,13 @@ export default function LayerRectangle({
     //   onPointerDown={(e) => onLayerPointerDown(e, id)}
     // />
     <motion.rect
+      className="drop-shadow-brutal"
       initial={{ y, x, height: 0, width: 0, scale: 0 }}
       animate={{ x, y, width, height, scale: 1 }}
       transition={layerTransition}
       fill={colorToRGBA(fill)}
-      stroke={selectionColor}
-      strokeWidth={selectionColor ? 2 : 0}
+      stroke={selectionColor || "#000"}
+      strokeWidth={selectionColor ? 2 : 1}
       onPointerDown={(e) => onLayerPointerDown(e, id)}
     />
   );
