@@ -5,7 +5,8 @@ import {
   createClient,
 } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
-import { Layer } from "~/types/canvas";
+import { PencilPoints } from "~/lib/utils";
+import { Color, Layer } from "~/types/canvas";
 
 const client = createClient({
   throttle: 60,
@@ -20,6 +21,8 @@ type Presence = {
   // ...
   cursor: { x: number; y: number } | null;
   selection: string[];
+  pencilDraft: PencilPoints | null;
+  penColor: Color | null;
 };
 
 // Optionally, Storage represents the shared document that persists in the
