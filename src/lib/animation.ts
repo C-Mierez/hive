@@ -1,6 +1,6 @@
 import { Transition } from "framer-motion";
 
-export const animationEase = [0.76, 0.5, 0.24, 1];
+export const animationEase = [1, 0.7, 0.24, 1];
 
 export const animationDuration = 0.15;
 
