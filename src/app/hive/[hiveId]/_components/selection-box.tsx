@@ -3,8 +3,8 @@
 import { useSelf, useStorage } from "@/liveblocks.config";
 import { memo } from "react";
 import useSelectionBounds from "~/hooks/use-selection-bounds";
-import { connectionToColor } from "~/lib/utils";
-import { LayerType, Side, XYHW } from "~/types/canvas";
+import { LayerType, Side } from "~/types/canvas";
+import type { XYHW } from "~/types/canvas";
 
 interface SelectionBox {
   onResizeHandlePointerDown: (corner: Side, initialBounds: XYHW) => void;

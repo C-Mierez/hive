@@ -3,7 +3,8 @@
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
-import { ChangeEvent, useEffect, useState } from "react";
+import type { ChangeEvent } from "react";
+import { useEffect, useState } from "react";
 import { useDebounceValue } from "usehooks-ts";
 import { Input } from "~/components/ui/input";
 
@@ -11,7 +12,7 @@ export default function SearchInput() {
   const router = useRouter();
 
   const [value, setValue] = useState("");
-  const [debouncedValue, setDebouncedValue] = useDebounceValue(value, 500);
+  const [debouncedValue] = useDebounceValue(value, 500);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

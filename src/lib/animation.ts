@@ -1,4 +1,4 @@
-import { Transition } from "framer-motion";
+import type { Transition } from "framer-motion";
 
 export const animationEase = [1, 0.7, 0.24, 1];
 

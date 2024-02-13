@@ -39,7 +39,7 @@ function Drafts() {
               x={0}
               y={0}
               points={other.pencilDraft}
-              fill={other.penColor || { r: 14, g: 13, b: 12, a: 1 }}
+              fill={other.penColor ?? { r: 14, g: 13, b: 12, a: 1 }}
             />
           );
         }

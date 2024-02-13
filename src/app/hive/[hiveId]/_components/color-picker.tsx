@@ -1,6 +1,6 @@
 import { Button } from "~/components/ui/button";
 import { UserColors, colorToRGBA } from "~/lib/utils";
-import { Color } from "~/types/canvas";
+import type { Color } from "~/types/canvas";
 
 interface ColorPickerParams {
   onChange: (color: Color) => void;

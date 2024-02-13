@@ -12,7 +12,7 @@ export const Cursor = memo(({ connectionId }: CursorParams) => {
   const userInfo = useOther(connectionId, (user) => user.info);
   const cursor = useOther(connectionId, (user) => user.presence.cursor);
 
-  const name = userInfo?.name || "Fellow Bee";
+  const name = userInfo?.name ?? "Fellow Bee";
 
   if (!cursor) {
     return null;
@@ -65,3 +65,5 @@ export const Cursor = memo(({ connectionId }: CursorParams) => {
     </motion.foreignObject>
   );
 });
+
+Cursor.displayName = "Cursor";

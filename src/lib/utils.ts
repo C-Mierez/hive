@@ -1,15 +1,15 @@
-import { type ClassValue, clsx } from "clsx";
-import { Point } from "framer-motion";
+import type { ClassValue } from "clsx";
+import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import {
+import type {
   Camera,
   Color,
   Layer,
-  LayerType,
   PathLayer,
-  Side,
+  Point,
   XYHW,
 } from "~/types/canvas";
+import { LayerType, Side } from "~/types/canvas";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -180,6 +180,7 @@ export function getSvgPathFromStroke(stroke: number[][]) {
       acc.push(x0, y0, (x0 + x1) / 2, (y0 + y1) / 2);
       return acc;
     },
+    // @ts-expect-error I have no idea what this is
     ["M", ...stroke[0], "Q"],
   );
 

@@ -1,5 +1,5 @@
 import { colorToRGBA } from "~/lib/utils";
-import { CircleLayer } from "~/types/canvas";
+import type { CircleLayer } from "~/types/canvas";
 import { motion } from "framer-motion";
 import { layerTransition } from "~/lib/animation";
 
@@ -20,13 +20,6 @@ export default function LayerCircle({
   return (
     <motion.ellipse
       className="drop-shadow-brutal"
-      // style={{
-      //   transform: `translate(${x}px, ${y}px)`,
-      // }}
-      // cx={width / 2}
-      // cy={height / 2}
-      // rx={width / 2}
-      // ry={height / 2}
       initial={{
         scale: 0,
         x,
@@ -47,7 +40,7 @@ export default function LayerCircle({
       }}
       transition={layerTransition}
       fill={fill ? colorToRGBA(fill) : "#000"}
-      stroke={selectionColor || "#000"}
+      stroke={selectionColor ?? "#000"}
       strokeWidth={selectionColor ? 2 : 1}
       onPointerDown={(e) => onLayerPointerDown(e, id)}
     />

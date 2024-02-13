@@ -1,14 +1,13 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
-import { DropdownMenuIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { Id } from "convex/_generated/dataModel";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import type { Id } from "convex/_generated/dataModel";
 import { useQuery } from "convex/react";
 import Link from "next/link";
 import Hint from "~/components/hint";
 import HiveActions from "~/components/hive-actions";
 import { Button } from "~/components/ui/button";
-import { Separator } from "~/components/ui/separator";
 import { useRenameModal } from "~/store/use-rename-modal";
 
 interface InfoParams {

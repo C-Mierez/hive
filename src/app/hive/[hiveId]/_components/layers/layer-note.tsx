@@ -1,9 +1,10 @@
-import { cn, colorToRGBA, getContrastingTextColor } from "~/lib/utils";
-import { NoteLayer } from "~/types/canvas";
-import { motion } from "framer-motion";
-import { layerTransition } from "~/lib/animation";
-import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
 import { useMutation } from "@/liveblocks.config";
+import { motion } from "framer-motion";
+import type { ContentEditableEvent } from "react-contenteditable";
+import ContentEditable from "react-contenteditable";
+import { layerTransition } from "~/lib/animation";
+import { colorToRGBA, getContrastingTextColor } from "~/lib/utils";
+import type { NoteLayer } from "~/types/canvas";
 
 const calculateFontSize = (width: number, height: number) => {
   const maxFontSize = 96;
@@ -57,7 +58,7 @@ export default function LayerNote({
       }}
       transition={layerTransition}
       fill={colorToRGBA(fill)}
-      stroke={selectionColor || "#000"}
+      stroke={selectionColor ?? "#000"}
       strokeWidth={selectionColor ? 2 : 1}
       onPointerDown={(e) => onLayerPointerDown(e, id)}
       style={
@@ -69,7 +70,7 @@ export default function LayerNote({
       className={"overflow-visible"}
     >
       <ContentEditable
-        html={value || "Text"}
+        html={value ?? "Text"}
         onChange={onChange}
         className="flex h-full w-full items-center justify-center rounded-sm  border-global_sm text-center shadow-brutal outline-none"
         style={{

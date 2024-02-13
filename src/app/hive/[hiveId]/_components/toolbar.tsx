@@ -8,7 +8,8 @@ import {
   TextIcon,
 } from "@radix-ui/react-icons";
 import ToolButton from "./tool-button";
-import { CanvasMode, CanvasState, LayerType } from "~/types/canvas";
+import { CanvasMode, LayerType } from "~/types/canvas";
+import type { CanvasState } from "~/types/canvas";
 
 interface ToolbarParams {
   canvasState: CanvasState;

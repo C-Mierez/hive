@@ -1,6 +1,6 @@
 "use client";
 
-import { SignUpButton, useAuth } from "@clerk/nextjs";
+import { SignUpButton } from "@clerk/nextjs";
 import css from "./landing.module.css";
 import { useConvexAuth } from "convex/react";
 

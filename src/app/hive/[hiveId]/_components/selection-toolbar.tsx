@@ -1,9 +1,9 @@
 import { useMutation, useSelf } from "@/liveblocks.config";
 import { memo } from "react";
 import useSelectionBounds from "~/hooks/use-selection-bounds";
-import { Camera, Color } from "~/types/canvas";
+import type { Camera, Color } from "~/types/canvas";
 import ColorPicker from "./color-picker";
-import useDeleteLayers from "../../../../hooks/use-delete-layeres";
+import useDeleteLayers from "~/hooks/use-delete-layeres";
 import { Button } from "~/components/ui/button";
 import {
   DoubleArrowDownIcon,

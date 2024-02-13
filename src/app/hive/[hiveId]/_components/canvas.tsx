@@ -20,16 +20,17 @@ import {
   pointerEventToCanvasPoint,
   resizeBounds,
 } from "~/lib/utils";
-import {
+import type {
   Camera,
-  CanvasMode,
   CanvasState,
   Color,
-  LayerType,
   Point,
   Side,
   XYHW,
+  LayerType,
 } from "~/types/canvas";
+
+import { CanvasMode } from "~/types/canvas";
 
 import { CursorPresence } from "./cursors-presence";
 import Info from "./info";
@@ -414,7 +415,7 @@ export default function Canvas({ hiveId }: CanvasParams) {
   );
 
   const onPointerUp = useMutation(
-    (ctx, e) => {
+    (ctx, e: React.PointerEvent) => {
       const point = pointerEventToCanvasPoint(e, camera);
 
       if (

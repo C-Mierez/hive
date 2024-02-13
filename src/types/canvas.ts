@@ -1,4 +1,4 @@
-import { PencilPoints } from "~/lib/utils";
+import type { PencilPoints } from "~/lib/utils";
 
 /* ------------------------------ Global Types ------------------------------ */
 export type Point = {

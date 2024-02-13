@@ -19,12 +19,15 @@ export default function Participants() {
         </span>
       )}
       {users.slice(0, MAX_SHOWN_COLLABORATORS).map((user) => (
-        <AvatarWrapper color={connectionToColor(user.connectionId)}>
+        <AvatarWrapper
+          key={user.id}
+          color={connectionToColor(user.connectionId)}
+        >
           <CanvasAvatar
             key={user.id}
             src={user.info?.picture}
             name={user.info?.name}
-            fallback={user.info?.name?.charAt(0).toUpperCase() || "B"}
+            fallback={user.info?.name?.charAt(0).toUpperCase() ?? "B"}
           />
         </AvatarWrapper>
       ))}
@@ -33,7 +36,7 @@ export default function Participants() {
           <CanvasAvatar
             src={currentUser.info?.picture}
             name={"You"}
-            fallback={currentUser.info?.name?.charAt(0).toUpperCase() || "B"}
+            fallback={currentUser.info?.name?.charAt(0).toUpperCase() ?? "B"}
           />
         </AvatarWrapper>
       )}

@@ -1,9 +1,10 @@
-import { colorToRGBA } from "~/lib/utils";
-import { TextLayer } from "~/types/canvas";
-import { motion } from "framer-motion";
-import { layerTransition } from "~/lib/animation";
-import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
 import { useMutation } from "@/liveblocks.config";
+import { motion } from "framer-motion";
+import type { ContentEditableEvent } from "react-contenteditable";
+import ContentEditable from "react-contenteditable";
+import { layerTransition } from "~/lib/animation";
+import { colorToRGBA } from "~/lib/utils";
+import type { TextLayer } from "~/types/canvas";
 
 const calculateFontSize = (width: number, height: number) => {
   const maxFontSize = 96;
@@ -47,12 +48,12 @@ export default function LayerText({
       animate={{ x, y, width, height, scale: 1 }}
       transition={layerTransition}
       fill={colorToRGBA(fill)}
-      stroke={selectionColor || "#000"}
+      stroke={selectionColor ?? "#000"}
       strokeWidth={selectionColor ? 2 : 1}
       onPointerDown={(e) => onLayerPointerDown(e, id)}
     >
       <ContentEditable
-        html={value || "Text"}
+        html={value ?? "Text"}
         onChange={onChange}
         className="flex h-full w-full items-center justify-center text-center  outline-none"
         style={{

@@ -1,9 +1,7 @@
-import { PencilPoints, colorToRGBA } from "~/lib/utils";
-import { Color, PathLayer } from "~/types/canvas";
-import { motion } from "framer-motion";
-import { layerTransition } from "~/lib/animation";
-import { getSvgPathFromStroke } from "~/lib/utils";
 import getStroke from "perfect-freehand";
+import { colorToRGBA, getSvgPathFromStroke } from "~/lib/utils";
+import type { PencilPoints } from "~/lib/utils";
+import type { Color } from "~/types/canvas";
 
 interface LayerPathParams {
   x: number;
@@ -22,7 +20,6 @@ export default function LayerPath({
   points,
   onLayerPointerDown,
   selectionColor,
-  stroke,
 }: LayerPathParams) {
   return (
     <path
@@ -41,7 +38,7 @@ export default function LayerPath({
       x={0}
       y={0}
       fill={colorToRGBA(fill)}
-      stroke={selectionColor || colorToRGBA(fill)}
+      stroke={selectionColor ?? colorToRGBA(fill)}
       strokeWidth={selectionColor ? 2 : 1}
     />
   );

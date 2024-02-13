@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import type { FormEvent } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { api } from "@/convex/_generated/api";
 import { useRenameModal } from "~/store/use-rename-modal";
@@ -19,7 +20,7 @@ import {
 import { Input } from "../ui/input";
 import { useMutation } from "convex/react";
 import handleConvexPending from "~/lib/handle-convex-pending";
-import { Id } from "convex/_generated/dataModel";
+import type { Id } from "convex/_generated/dataModel";
 
 export default function RenameModal() {
   const modal = useRenameModal();

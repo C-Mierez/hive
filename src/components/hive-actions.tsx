@@ -15,7 +15,7 @@ import {
 import { useState } from "react";
 import { useMutation } from "convex/react";
 import handleConvexPending from "~/lib/handle-convex-pending";
-import { Id } from "convex/_generated/dataModel";
+import type { Id } from "convex/_generated/dataModel";
 
 interface HiveActionParams {
   children: React.ReactNode;

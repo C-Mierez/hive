@@ -1,5 +1,5 @@
 import { useSelf, useStorage } from "@/liveblocks.config";
-import { Layer } from "~/types/canvas";
+import type { Layer } from "~/types/canvas";
 
 function boundingBox(layers: Layer[]) {
   const first = layers[0];

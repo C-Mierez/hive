@@ -1,4 +1,3 @@
-import { ExitIcon } from "@radix-ui/react-icons";
 import Hint from "~/components/hint";
 import { Button } from "~/components/ui/button";
 
