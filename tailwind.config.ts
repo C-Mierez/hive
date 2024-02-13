@@ -25,6 +25,10 @@ const config = {
         brutal: "4px 4px 0 0px hsl(var(--border))",
         brutal_sm: "2px 2px 0 0px hsl(var(--border))",
       },
+      dropShadow: {
+        brutal: "4px 4px 0 hsl(var(--border))",
+        brutal_sm: "2px 2px 0 hsl(var(--border))",
+      },
       fontFamily: {
         sans: ["var(--font-mabry)"],
       },
