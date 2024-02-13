@@ -8,8 +8,7 @@ import type { Id } from "@/convex/_generated/dataModel";
 const convex = new ConvexHttpClient(env.NEXT_PUBLIC_CONVEX_URL);
 
 const liveblocks = new Liveblocks({
-  secret:
-    "sk_dev_yRs8qzAYgBkegn09GFScc9_te9ge7iMWBY7nkQEYcNqIkrURuYgY8MQ_3cn1tncV",
+  secret: env.LIVEBLOCKS_SECRET_KEY,
 });
 
 export async function POST(request: Request) {
