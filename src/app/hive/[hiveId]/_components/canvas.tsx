@@ -12,7 +12,7 @@ import {
 import { LiveObject } from "@liveblocks/client";
 import { motion } from "framer-motion";
 import { nanoid } from "nanoid";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   connectionToColor,
   findIntersectingLayersWithRectangle,
@@ -39,6 +39,8 @@ import Participants from "./participants";
 import { SelectionBox } from "./selection-box";
 import SelectionToolbar from "./selection-toolbar";
 import Toolbar from "./toolbar";
+import useDisableScrollBounce from "~/hooks/use-disable-scroll-bounce";
+import useDeleteLayers from "~/hooks/use-delete-layeres";
 
 interface CanvasParams {
   hiveId: string;
@@ -59,6 +61,8 @@ export default function Canvas({ hiveId }: CanvasParams) {
     b: 5,
     a: 1,
   });
+
+  useDisableScrollBounce();
 
   const layerIds = useStorage((root) => root.layerIds);
 
@@ -443,6 +447,35 @@ export default function Canvas({ hiveId }: CanvasParams) {
       insertPath,
     ],
   );
+
+  /* -------------------------------- Shortcuts ------------------------------- */
+  const deleteLayers = useDeleteLayers();
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      switch (e.key) {
+        case "z": {
+          if (e.ctrlKey || e.metaKey) {
+            if (e.shiftKey) {
+              history.redo();
+            } else {
+              history.undo();
+            }
+            break;
+          }
+        }
+        case "Delete":
+          deleteLayers();
+          break;
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [deleteLayers, history]);
 
   return (
     <main className="relative h-screen w-full touch-none bg-muted">
