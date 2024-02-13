@@ -42,7 +42,7 @@ export const SelectionToolbar = memo(
         const liveLayerIds = ctx.storage.get("layerIds");
         const indices: number[] = [];
 
-        const arrLiveLayerIds = Array.from(liveLayerIds);
+        const arrLiveLayerIds = liveLayerIds.toImmutable();
 
         for (let i = 0; i < arrLiveLayerIds.length; i++) {
           if (arrLiveLayerIds[i] && selection.includes(arrLiveLayerIds[i]!)) {
@@ -64,7 +64,7 @@ export const SelectionToolbar = memo(
         const liveLayerIds = ctx.storage.get("layerIds");
         const indices: number[] = [];
 
-        const arrLiveLayerIds = Array.from(liveLayerIds);
+        const arrLiveLayerIds = liveLayerIds.toImmutable();
 
         for (let i = 0; i < arrLiveLayerIds.length; i++) {
           if (arrLiveLayerIds[i] && selection.includes(arrLiveLayerIds[i]!)) {
