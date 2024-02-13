@@ -1,3 +1,5 @@
+import { PencilPoints } from "~/lib/utils";
+
 /* ------------------------------ Global Types ------------------------------ */
 export type Point = {
   x: number;
@@ -67,7 +69,7 @@ export type PathLayer = {
   height: number;
   width: number;
   fill: Color;
-  points: number[][];
+  points: PencilPoints;
   value?: string;
 };
 
